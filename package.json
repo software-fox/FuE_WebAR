@@ -1,7 +1,6 @@
 {
   "name": "fue_web-ar",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "serve": "webpack serve --mode development",
@@ -10,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/tba_personal/da/digitalanimals_website.git"
+    "url": "https://github.com/software-fox/FuE_WebAR.git"
   },
   "author": "fox_da",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/tba_personal/da/digitalanimals_website/issues"
+    "url": "https://github.com/software-fox/FuE_WebAR.git"
   },
-  "homepage": "https://gitlab.com/tba_personal/da/digitalanimals_website#readme",
+  "homepage": "https://github.com/software-fox/FuE_WebAR.git",
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
@@ -36,5 +35,6 @@
   "dependencies": {
     "saiba": "^3.3.1",
     "three": "^0.122.0"
-  }
+  },
+  "description": ""
 }
