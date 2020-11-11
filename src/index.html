@@ -6,13 +6,13 @@
     <title>Web-AR Hello World</title>
    
   <!-- three.js library -->
-  <script src='../dist/node_modules/saiba/three.js/examples/vendor/three.js/build/three.min.js'></script>
+  <script src='./node_modules/saiba/three.js/examples/vendor/three.js/build/three.min.js'></script>
   <!-- three.js load GLTF -->
-  <script src='../dist/node_modules/saiba/three.js/examples/vendor/three.js/GLTFLoader.js'></script>
+  <script src='./node_modules/saiba/three.js/examples/vendor/three.js/GLTFLoader.js'></script>
   <!-- ar.js -->
-  <script src='../dist/node_modules/saiba/three.js/build/ar-nft.js'></script>
+  <script src='./node_modules/saiba/three.js/build/ar-nft.js'></script>
 
-  <script>THREEx.ArToolkitContext.baseURL = '../dist/node_modules/saiba/data/'</script>
+  <script>THREEx.ArToolkitContext.baseURL = './node_modules/saiba/data/'</script>
 
   </head>
   <body style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin : 0px; overflow: hidden;'>
@@ -161,7 +161,7 @@
         // init controls for camera
         var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
             type : 'nft',
-            descriptorsUrl : '../node_modules/saiba/data/dataNFT/pinball',
+            descriptorsUrl : './node_modules/saiba/data/dataNFT/pinball',
             changeMatrixMode: 'cameraTransformMatrix'
         })
 
