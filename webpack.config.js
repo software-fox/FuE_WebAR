@@ -29,6 +29,8 @@ module.exports = {
       patterns: [
         { from: './node_modules/saiba/three.js/', to: './node_modules/saiba/three.js/' },
         { from: './node_modules/saiba/data/', to: './node_modules/saiba/data/' },
+        { from: './src/resources/Arla_11_Test.glb', to: './src/resources/Arla_11_Test.glb' },
+        
       ],
     }),
   ]
