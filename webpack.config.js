@@ -28,6 +28,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: './node_modules/saiba/three.js/', to: './node_modules/saiba/three.js/' },
+        { from: './node_modules/saiba/data/', to: './node_modules/saiba/data/' },
       ],
     }),
   ]
