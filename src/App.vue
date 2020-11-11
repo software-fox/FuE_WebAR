@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     {{ message }}
-    <vue-ar />
+    <!-- <vue-ar /> -->
   </div>
 </template>
 
@@ -19,7 +19,6 @@ export default {
   },
   mounted() {
     console.log("mounted");
-    
   },
 };
 </script>

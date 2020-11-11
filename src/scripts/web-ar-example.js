@@ -1,56 +1,55 @@
 /*jshint esversion: 6 */
-import * as THREE from '../../../node_modules/three/build/three.module.js';
-import {
-    GLTFLoader
-} from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from "../../../node_modules/three/build/three.module.js";
+import { GLTFLoader } from "../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 
-import Stats from '../../../node_modules/three/examples/jsm/libs/stats.module.js';
-        
-        //////////////////////////////////////////////////////////////////////////////////
-        //		Init
-        //////////////////////////////////////////////////////////////////////////////////
+import Stats from "../../../node_modules/three/examples/jsm/libs/stats.module.js";
 
-        
-    var canvas = document.querySelector('#yoghurt');
-        var renderer = new THREE.WebGLRenderer({
-            canvas,
-            antialias: true,
-            alpha: true,
-            precision: 'mediump',
-        });
+import { OrbitControls } from "../../../node_modules/three/examples/jsm/controls/OrbitControls.js";
 
-        var clock = new THREE.Clock();
+//////////////////////////////////////////////////////////////////////////////////
+//		Init
+//////////////////////////////////////////////////////////////////////////////////
 
-        var mixers = [];
+var canvas = document.querySelector("#yoghurt");
+var renderer = new THREE.WebGLRenderer({
+  canvas,
+  antialias: true,
+  alpha: true,
+  precision: "mediump",
+});
 
-        renderer.setPixelRatio(window.devicePixelRatio);
+var clock = new THREE.Clock();
 
-        renderer.setClearColor(new THREE.Color('lightgrey'), 0)
-        
-    // renderer.setSize(canvas.width, canvas.height);
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        // renderer.domElement.style.position = 'absolute'
-        // renderer.domElement.style.top = '0px'
-        // renderer.domElement.style.left = '0px'
-        //document.body.appendChild( renderer.domElement );
+var mixers = [];
 
-        // init scene and camera
-        var scene = new THREE.Scene();
+// renderer.setPixelRatio(window.devicePixelRatio);
 
-        //////////////////////////////////////////////////////////////////////////////////
-        //		Initialize a basic camera
-        //////////////////////////////////////////////////////////////////////////////////
+renderer.setClearColor(new THREE.Color("lightgrey"), 0);
 
-        // Create a camera
-        var camera = new THREE.Camera();
-        scene.add(camera);
+// renderer.setSize(canvas.width, canvas.height);
+renderer.setSize(window.innerWidth, window.innerHeight);
+// renderer.domElement.style.position = 'absolute'
+// renderer.domElement.style.top = '0px'
+// renderer.domElement.style.left = '0px'
+//document.body.appendChild( renderer.domElement );
 
-        var light = new THREE.AmbientLight(0xffffff);
-        scene.add(light);
+// init scene and camera
+var scene = new THREE.Scene();
 
-        ////////////////////////////////////////////////////////////////////////////////
-        //          handle arToolkitSource
-        ////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//		Initialize a basic camera
+//////////////////////////////////////////////////////////////////////////////////
+
+// Create a camera
+var camera = new THREE.PerspectiveCamera();
+scene.add(camera);
+
+var light = new THREE.AmbientLight(0xffffff);
+scene.add(light);
+const controls = new OrbitControls(camera, canvas);
+////////////////////////////////////////////////////////////////////////////////
+//          handle arToolkitSource
+////////////////////////////////////////////////////////////////////////////////
 /*
         var arToolkitSource = new THREEx.ArToolkitSource({
             sourceType : 'webcam',
@@ -114,63 +113,61 @@ import Stats from '../../../node_modules/three/examples/jsm/libs/stats.module.js
             changeMatrixMode: 'cameraTransformMatrix'
         })
 */
-        scene.visible = false
+// scene.visible = false;
 
-        var root = new THREE.Object3D();
-        scene.add(root);
+var root = new THREE.Object3D();
+scene.add(root);
 
-        //////////////////////////////////////////////////////////////////////////////////
-        //		add an object in the scene
-        //////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//		add an object in the scene
+//////////////////////////////////////////////////////////////////////////////////
 
-        var threeGLTFLoader = new GLTFLoader();
-        var model;
-        
-        threeGLTFLoader.load("./src/resources/Arla_05_Test.glb", function (gltf) {
-            model = gltf.scene.children[0];
-            model.name = 'Yoghurt';
-            
-            model.scale.set(0.5, 0.5, 0.5);
+var threeGLTFLoader = new GLTFLoader();
+var model;
 
-            var animation = gltf.animations[0];
-            var mixer = new THREE.AnimationMixer(model);
-            mixers.push(mixer);
-            var action = mixer.clipAction(animation);
-            action.play();
+threeGLTFLoader.load("./src/resources/Arla_11_Test.glb", function(gltf) {
+  model = gltf.scene.children[0];
+  model.name = "Yoghurt";
 
-            root.matrixAutoUpdate = false;
-            root.add(model);
+  model.scale.set(0.1, 0.1, 0.1);
 
-            model.position.z = 0;
-            model.position.x = 0;
-            model.position.y = 0;
+  var animation = gltf.animations[0];
+  var mixer = new THREE.AnimationMixer(model);
+  mixers.push(mixer);
+  var action = mixer.clipAction(animation);
+  action.play();
 
+  root.matrixAutoUpdate = false;
+  root.add(model);
 
-            //////////////////////////////////////////////////////////////////////////////////
-            //		render the whole thing on the page
-            //////////////////////////////////////////////////////////////////////////////////
+  model.position.z = -10;
+  model.position.x = 0;
+  model.position.y = 0;
 
-            var animate = function() {
-                requestAnimationFrame(animate);
+  //////////////////////////////////////////////////////////////////////////////////
+  //		render the whole thing on the page
+  //////////////////////////////////////////////////////////////////////////////////
 
-                if (mixers.length > 0) {
-                    for (var i = 0; i < mixers.length; i++) {
-                        mixers[i].update(clock.getDelta());
-                    }
-                }
+  var animate = function() {
+    requestAnimationFrame(animate);
 
-                // if (!arToolkitSource.ready) {
-                //     return;
-                // }
+    if (mixers.length > 0) {
+      for (var i = 0; i < mixers.length; i++) {
+        mixers[i].update(clock.getDelta());
+      }
+    }
 
-                //arToolkitContext.update( arToolkitSource.domElement )
+    // if (!arToolkitSource.ready) {
+    //     return;
+    // }
 
-                // update scene.visible if the marker is seen
-                scene.visible = camera.visible;
+    //arToolkitContext.update( arToolkitSource.domElement )
 
-                renderer.render(scene, camera);
-            };
+    // update scene.visible if the marker is seen
+    scene.visible = camera.visible;
 
-            requestAnimationFrame(animate);
-        }
-    );
+    renderer.render(scene, camera);
+  };
+
+  requestAnimationFrame(animate);
+});
