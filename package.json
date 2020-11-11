@@ -18,6 +18,8 @@
   },
   "homepage": "https://software-fox.github.io/FuE_WebAR",
   "devDependencies": {
+    "saiba": "^3.3.1",
+    "three": "^0.122.0",
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "babel-loader": "^8.1.0",

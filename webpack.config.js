@@ -19,7 +19,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: true,
+      inject: 'head',
     }),
     new VueLoaderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
