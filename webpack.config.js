@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -23,5 +24,11 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+
+    new CopyPlugin({
+      patterns: [
+        { from: './node_modules/saiba/three.js/', to: './node_modules/saiba/three.js/' },
+      ],
+    }),
   ]
 };
