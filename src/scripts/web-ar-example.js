@@ -50,7 +50,7 @@ const controls = new OrbitControls(camera, canvas);
 ////////////////////////////////////////////////////////////////////////////////
 //          handle arToolkitSource
 ////////////////////////////////////////////////////////////////////////////////
-/*
+
         var arToolkitSource = new THREEx.ArToolkitSource({
             sourceType : 'webcam',
             sourceWidth: 480,
@@ -112,7 +112,7 @@ const controls = new OrbitControls(camera, canvas);
             descriptorsUrl : 'data/dataNFT/pinball',
             changeMatrixMode: 'cameraTransformMatrix'
         })
-*/
+
 // scene.visible = false;
 
 var root = new THREE.Object3D();
@@ -157,11 +157,11 @@ threeGLTFLoader.load("./src/resources/Arla_11_Test.glb", function(gltf) {
       }
     }
 
-    // if (!arToolkitSource.ready) {
-    //     return;
-    // }
+    if (!arToolkitSource.ready) {
+        return;
+    }
 
-    //arToolkitContext.update( arToolkitSource.domElement )
+    arToolkitContext.update( arToolkitSource.domElement )
 
     // update scene.visible if the marker is seen
     scene.visible = camera.visible;
